@@ -1,0 +1,3 @@
+These are the "official" samples used in tests, references etc.
+
+There's no single naming scheme. Top-level namespace may describe the general situation (`BasicInheritance`) or the particular case (`ModuleExtendsClass`).

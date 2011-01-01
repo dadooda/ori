@@ -1,0 +1,158 @@
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <link href="dev/github.css" rel="stylesheet" type="text/css" />
+</head>
+<h1 id="object-oriented-ri-for-irb-console">Object-Oriented RI for IRB Console</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Finding documentation for Ruby gems and libraries is often time-consuming.
+ORI addresses this issue by bringing RI documentation right to your IRB console in a <strong>simple</strong>, <strong>consistent</strong> and truly <strong>object-oriented</strong> way.</p>
+
+<p>If you’re too lazy to read this README, <a href="http://screecast">watch this screencast</a> instead.</p>
+
+<h2 id="setup">Setup</h2>
+
+<pre><code>$ gem sources --add http://rubygems.org
+$ gem install ori
+</code></pre>
+
+<p>Add to your <code>~/.irbrc</code>:</p>
+
+<pre><code>require "rubygems"
+require "ori"
+</code></pre>
+
+<h2 id="setup-in-rvm">Setup in RVM</h2>
+
+<p>If you’re using <a href="http://rvm.beginrescueend.com/">RVM</a> (Ruby Version Manager), install the gem into <code>global</code> gemset of Rubies you’re actively using:</p>
+
+<pre><code>$ rvm 1.9.2
+$ rvm gemset use global
+$ gem install ori
+</code></pre>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>It is recommended that you have Ruby &gt;= <strong>1.8.7</strong> and RDoc &gt;= <strong>2.5.3</strong>. Issue reports for older versions will, most probably, be ignored.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>All commands listed below are assumed to be typed in IRB. Example:</p>
+
+<pre><code>$ irb
+irb&gt; Array.ri
+</code></pre>
+
+<h3 id="request-ri-on-a-class">Request RI on a Class</h3>
+
+<pre><code>Array.ri
+String.ri
+[].ri
+"".ri
+5.ri
+</code></pre>
+
+<p>So that’s fairly straightforward – grab a class or class instance and call <tt>ri</tt> on it:</p>
+
+<pre><code>obj = SomeKlass.new
+obj.ri
+</code></pre>
+
+<h3 id="request-ri-on-a-method">Request RI on a Method</h3>
+
+<pre><code>String.ri :upcase
+"".ri "upcase"
+[].ri :sort
+Hash.ri :[]
+Hash.ri "::[]"
+Hash.ri "#[]"
+</code></pre>
+
+<h3 id="request-interactive-method-list">Request Interactive Method List</h3>
+
+<pre><code># Regular expression argument denotes list request.
+String.ri //
+"".ri //
+
+# Show method names matching a regular expression.
+"".ri /case/
+"".ri /^to_/
+[].ri /sort/
+{}.ri /each/
+
+# Show ALL methods, including those private of Kernel.
+Hash.ri //, :all =&gt; true
+Hash.ri //, :all
+
+# Show class methods or instance methods only.
+Module.ri //, :access =&gt; "::"
+Module.ri //, :access =&gt; "#"
+
+# Show own methods only.
+Time.ri //, :own =&gt; true
+Time.ri //, :own
+
+# Specify visibility: public, protected or private.
+Module.ri //, :visibility =&gt; :private
+Module.ri //, :visibility =&gt; [:public, :protected]
+
+# Filter fully formatted name by given regexp.
+Module, //, :fullre =&gt; /\(Object\)::/
+
+# Combine options.
+Module.ri //, :fullre =&gt; /\(Object\)::/, :access =&gt; "::", :visibility =&gt; :private
+</code></pre>
+
+<h3 id="request-interactive-method-list-for-more-than-1-object-at-once">Request Interactive Method List for More Than 1 Object at Once</h3>
+
+<p>By using the <tt>:join</tt> option it’s possible to fetch methods for more
+than 1 object at once. Value of <tt>:join</tt> (which can be an object or an array)
+is joined with the original receiver, and then a combined set is queried.</p>
+
+<pre><code># List all division-related methods from numeric classes.
+Fixnum.ri /div/, :join =&gt; [Float, Rational]
+5.ri /div/, :join =&gt; [5.0, 5.to_r]
+
+# List all ActiveSupport extensions to numeric classes.
+5.ri //, :join =&gt; [5.0, 5.to_r], :fullre =&gt; /ActiveSupport/
+
+# Query entire Rails family for methods having the word "javascript".
+rails_modules = ObjectSpace.each_object(Module).select {|mod| mod.to_s.match /Active|Action/}
+"".ri /javascript/, :join =&gt; rails_modules
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>You can configure ORI via <code>ORI.conf</code> object. By default it’s autoconfigured based on your OS and environment.</p>
+
+<pre><code># Enable color.
+ORI.conf.color = true
+
+# RI frontend command to use. &lt;tt&gt;%s&lt;/tt&gt; is replaced with sought topic.
+ORI.conf.frontend = "ri -T -f ansi %s"
+
+# Paging program to use.
+ORI.conf.pager = "less -R"
+</code></pre>
+
+<h2 id="compatibility">Compatibility</h2>
+
+<p>Prior to publication, ORI gem has been thoroughly tested on:</p>
+
+<ul>
+  <li>Ruby 1.9.2-p0 under Linux with RVM</li>
+  <li>Ruby 1.8.7-p302 under Linux with RVM</li>
+  <li>Ruby 1.8.7-p72 under Cygwin</li>
+  <li>Ruby 1.8.7-p72 under 32-bit Windows Vista</li>
+</ul>
+
+<h2 id="copyright">Copyright</h2>
+
+<p>Copyright © 2011 Alex Fortuna.</p>
+
+<p>Licensed under the MIT License.</p>
+
+<h2 id="feedback">Feedback</h2>
+
+<p>Send bug reports, suggestions and criticisms through <a href="http://github.com/dadooda/ori">project’s page on GitHub</a>.</p>

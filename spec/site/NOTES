@@ -1,0 +1,3 @@
+These specs depend on a particular OS, environment and setup.
+
+They SHOULD pass, but if the setup is incorrect, they may fail.
