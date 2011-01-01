@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Fortuna"]
   s.date = %q{2011-01-01}
-  s.description = %q{Object-oriented RI}
+  s.description = %q{Object-Oriented RI for IRB Console}
   s.email = %q{alex.r@askit.org}
   s.extra_rdoc_files = [
     "README.html",
@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/dadooda/ori}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Object-oriented RI}
+  s.summary = %q{Object-Oriented RI for IRB Console}
   s.test_files = [
     "spec/auto_config_spec.rb",
     "spec/colorize_spec.rb",

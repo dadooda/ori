@@ -7,8 +7,8 @@ begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|
     gem.name = GEM_NAME
-    gem.summary = "Object-oriented RI"
-    gem.description = "Object-oriented RI"
+    gem.summary = "Object-Oriented RI for IRB Console"
+    gem.description = "Object-Oriented RI for IRB Console"
     gem.email = "alex.r@askit.org"
     gem.homepage = "http://github.com/dadooda/ori"
     gem.authors = ["Alex Fortuna"]
