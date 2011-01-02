@@ -106,8 +106,8 @@ Module.ri //, :fullre =&gt; /\(Object\)::/, :access =&gt; "::", :visibility =&gt
 
 <h3 id="request-interactive-method-list-for-more-than-1-object-at-once">Request Interactive Method List for More Than 1 Object at Once</h3>
 
-<p>By using the <tt>:join</tt> option it’s possible to fetch methods for more
-than 1 object at once. Value of <tt>:join</tt> (which can be an object or an array)
+<p>By using the <code>:join</code> option it’s possible to fetch methods for more
+than 1 object at once. Value of <code>:join</code> (which can be an object or an array)
 is joined with the original receiver, and then a combined set is queried.</p>
 
 <pre><code># List all division-related methods from numeric classes.
@@ -129,7 +129,7 @@ rails_modules = ObjectSpace.each_object(Module).select {|mod| mod.to_s.match /Ac
 <pre><code># Enable color.
 ORI.conf.color = true
 
-# RI frontend command to use. &lt;tt&gt;%s&lt;/tt&gt; is replaced with sought topic.
+# RI frontend command to use. `%s` is replaced with sought topic.
 ORI.conf.frontend = "ri -T -f ansi %s"
 
 # Paging program to use.

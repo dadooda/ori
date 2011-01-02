@@ -104,8 +104,8 @@ So that's fairly straightforward -- grab a class or class instance and call `ri`
 
 ### Request Interactive Method List for More Than 1 Object at Once ###
 
-By using the <tt>:join</tt> option it's possible to fetch methods for more
-than 1 object at once. Value of <tt>:join</tt> (which can be an object or an array)
+By using the `:join` option it's possible to fetch methods for more
+than 1 object at once. Value of `:join` (which can be an object or an array)
 is joined with the original receiver, and then a combined set is queried.
 
     # List all division-related methods from numeric classes.
@@ -128,7 +128,7 @@ You can configure ORI via `ORI.conf` object. By default it's autoconfigured base
     # Enable color.
     ORI.conf.color = true
 
-    # RI frontend command to use. <tt>%s</tt> is replaced with sought topic.
+    # RI frontend command to use. `%s` is replaced with sought topic.
     ORI.conf.frontend = "ri -T -f ansi %s"
 
     # Paging program to use.
