@@ -97,7 +97,7 @@ So that's fairly straightforward -- grab a class or class instance and call `ri`
     Module.ri //, :visibility => [:public, :protected]
 
     # Filter fully formatted name by given regexp.
-    Module, //, :fullre => /\(Object\)::/
+    Module.ri //, :fullre => /\(Object\)::/
 
     # Combine options.
     Module.ri //, :fullre => /\(Object\)::/, :access => "::", :visibility => :private
