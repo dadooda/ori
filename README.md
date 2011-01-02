@@ -54,7 +54,7 @@ All commands listed below are assumed to be typed in IRB. Example:
     "".ri
     5.ri
 
-So that's fairly straightforward -- grab a class or class instance and call <tt>ri</tt> on it:
+So that's fairly straightforward -- grab a class or class instance and call `ri` on it:
 
     obj = SomeKlass.new
     obj.ri
