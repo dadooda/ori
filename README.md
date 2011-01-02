@@ -7,7 +7,7 @@ Introduction
 Finding documentation for Ruby gems and libraries is often time-consuming.
 ORI addresses this issue by bringing RI documentation right to your IRB console in a **simple**, **consistent** and truly **object-oriented** way.
 
-If you're too lazy to read this README, [watch this screencast](http://screecast) instead.
+If you're too lazy to read this README, [watch this screencast](http://www.screencast-o-matic.com/watch/cXVVYuXpH) instead.
 
 
 Setup
@@ -62,7 +62,7 @@ So that's fairly straightforward -- grab a class or class instance and call <tt>
 ### Request RI on a Method ###
 
     String.ri :upcase
-    "".ri "upcase"
+    "".ri :upcase
     [].ri :sort
     Hash.ri :[]
     Hash.ri "::[]"

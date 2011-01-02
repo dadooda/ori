@@ -19,7 +19,7 @@ module ORI
       # == Request RI on a Method
       #
       #   String.ri :upcase
-      #   "".ri "upcase"
+      #   "".ri :upcase
       #   [].ri :sort
       #   Hash.ri :[]
       #   Hash.ri "::[]"
