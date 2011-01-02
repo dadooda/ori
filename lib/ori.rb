@@ -8,7 +8,7 @@ end
 #
 # ORI brings RI documentation right to your IRB console in a simple, consistent and truly object-oriented way.
 #
-# To enable ORI add to your `~/.irbrc`:
+# To enable ORI add to your <tt>~/.irbrc</tt>:
 #
 #   require "rubygems"
 #   require "ori"
