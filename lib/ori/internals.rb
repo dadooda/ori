@@ -141,7 +141,12 @@ module ORI
       while true
         print colorize([:choice, :prompt], o[:prompt], " ", [:reset])
 
-        input = gets.strip
+        input = gets
+        if input.nil?
+          return o[:on_abort]
+        end
+
+        input.strip!
         if input.empty?
           if o[:on_skip]
             break o[:on_skip]
