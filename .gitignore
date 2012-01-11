@@ -1,12 +1,7 @@
 # General Ruby.
 .ref-*
-.ref-*/
-.old/
+.old*
 *-old*
-*-old*/
-.proto-*
-.proto-*/
-*.rbx
 
 # Project-specific.
 /*.rb

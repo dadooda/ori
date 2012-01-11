@@ -36,21 +36,6 @@ task :push do
   Kernel.system("gem", "push", pkgfile)
 end
 
-desc "Generate README.html"
-task :readme do
-  require "kramdown"
-
-  doc = Kramdown::Document.new(File.read "README.md")
-
-  fn = "README.html"
-  puts "Writing '#{fn}'..."
-  File.open(fn, "w") do |f|
-    f.write(File.read "dev/head.html")
-    f.write(doc.to_html)
-  end
-  puts ": ok"
-end
-
 desc "Generate rdoc documentation"
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = "doc"
