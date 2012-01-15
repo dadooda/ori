@@ -7,6 +7,7 @@ Object-oriented `ri` for IRB console
   * [Regular setup](#regular_setup)
   * [RVM setup](#rvm_setup)
   * [Rails 3.x+Bundler setup](#rails_3_bundler_setup)
+* [Local project doc setup](#local_project_doc_setup)
 * [Configuration](#configuration)
 * [Compatibility](#compatibility)
 * [Copyright](#copyright)
@@ -175,6 +176,37 @@ for more descriptive declaration of your validations.
 ~~~
 
 Seems to work now.
+
+
+<a name="local_project_doc_setup" /> Local project doc setup
+------------------------------------------------------------
+
+With a small hack it is possible to generate your local project's (Rails or not) `ri` documentation and make it available to ORI.
+
+To do it, add to your `~/.irbrc`:
+
+~~~
+# Local doc hack. To generate project's doc, do a:
+#
+#   $ rdoc --ri -o doc/ri -O
+if File.directory?(path = "doc/ri")
+  ORI.conf.frontend.gsub!("%s", "-d #{path} %s")
+end
+~~~
+
+Now step into your project's directory and generate the doc, like the comment says:
+
+~~~
+$ rdoc --ri -o doc/ri -O
+~~~
+
+Now fire up the console and enjoy instant documentation on your classes and methods:
+
+~~~
+$ rails console
+>> MyKlass.ri
+>> MyKlass.ri :some_method
+~~~
 
 
 <a name="usage" /> Usage
