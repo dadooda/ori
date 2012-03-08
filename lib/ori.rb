@@ -1,6 +1,7 @@
 require "rbconfig"
 
-Dir[File.join(File.dirname(__FILE__), "{ext,misc,ori}/**/*.rb")].each do |fn|
+# TODO: Remove `File.dirname`, use `expand_path`. 
+Dir[File.join(File.dirname(__FILE__), "**/*.rb")].each do |fn|
   require File.expand_path(fn)
 end
 
@@ -18,11 +19,12 @@ end
 #   $ irb
 #   irb> Array.ri
 #
-# You should see RI page on <tt>Array</tt>.
+# You should see RI page on Array.
 #
 # See also:
-# * <tt>ORI::Extensions::Object#ri</tt>
-# * <tt>ORI::conf</tt>
+#
+# * ORI::Extensions::Object#ri
+# * ORI::conf
 module ORI
   # Get configuration object to query or set its values.
   # Note that default values are set automatically based on your OS and environment.

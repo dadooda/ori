@@ -49,6 +49,7 @@ module ORI
     end
 
     # Inspect an object with various inspectors.
+    #
     # Options:
     #
     #   :inspectors => []         # Array of inspectors, e.g. [:public_instance_methods].

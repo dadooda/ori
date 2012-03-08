@@ -8,6 +8,7 @@ Object-oriented `ri` for IRB console
   * [RVM setup](#rvm_setup)
   * [Rails 3.x+Bundler setup](#rails_3_bundler_setup)
 * [Local project doc setup](#local_project_doc_setup)
+* [Usage](#usage)
 * [Configuration](#configuration)
 * [Compatibility](#compatibility)
 * [Copyright](#copyright)

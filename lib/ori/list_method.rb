@@ -131,9 +131,10 @@ module ORI
     #---------------------------------------
 
     # Format self into a string.
+    #
     # Options:
     #
-    #   :color => true|false
+    #   :color => T|F     # Default is true.
     def format(options = {})
       options = options.dup
       o = {}
