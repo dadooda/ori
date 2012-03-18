@@ -1,3 +1,4 @@
+
 Setting up core `ri` documentation for your version of Ruby
 ===========================================================
 
