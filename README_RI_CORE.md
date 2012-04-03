@@ -47,24 +47,25 @@ $ ri Array.each
 
 ### 1.8.x ###
 
-Install, select, switch to `global` gemset:
+Install and select the new Ruby:
 
 ~~~
-$ rvm install 1.8.7
-$ rvm 1.8.7
+$ rvm install 1.8.7-p358
+$ rvm 1.8.7-p358
+~~~
+
+Install the most recent `rdoc` gem (for 1.8 you **must** do it):
+
+~~~
 $ rvm gemset use global
-~~~
-
-Now install the most recent `rdoc` gem. For 1.8 you **must** do it since the default version is slow, buggy, and uses the outdated data storage format:
-
-~~~
 $ gem install rdoc
 ~~~
 
-Generate and install the docs (takes a while):
+Generate `ri` documentation (takes a while):
 
 ~~~
-$ rvm docs generate
+$ cd ~/.rvm/src
+$ rvm docs generate-ri
 ~~~
 
 Test:
