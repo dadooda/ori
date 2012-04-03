@@ -17,25 +17,25 @@ RVM
 
 ### 1.9.x ###
 
-Install, select, switch to `global` gemset:
+Install and select the new Ruby:
 
 ~~~
 $ rvm install 1.9.3-p125
 $ rvm 1.9.3-p125
 ~~~
 
-Generate and install the docs (takes a while):
-
-~~~
-$ cd ~/.rvm/src
-$ rvm docs generate-ri
-~~~
-
-Although not absolutely required (the default version 2.5 works fairly well), I still recommend to install the most recent `rdoc` gem:
+Install the most recent `rdoc` gem:
 
 ~~~
 $ rvm gemset use global
 $ gem install rdoc
+~~~
+
+Generate `ri` documentation (takes a while):
+
+~~~
+$ cd ~/.rvm/src
+$ rvm docs generate-ri
 ~~~
 
 Test:
