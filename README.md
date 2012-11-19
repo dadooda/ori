@@ -114,10 +114,11 @@ Start by stepping into your Rails project directory:
 $ cd myrailsproject
 ~~~
 
-Tell Bundler to include the `rdoc` gem in `:development` environment. Add to your `Gemfile`:
+Add to your `Gemfile`:
 
 ~~~
 group :development do
+  gem "ori"
   gem "rdoc"
 end
 ~~~
