@@ -1,5 +1,5 @@
 
-Object-oriented `ri` for IRB console
+Object-oriented RI for IRB console
 ====================================
 
 
@@ -20,7 +20,7 @@ Object-oriented `ri` for IRB console
 --------------------------------------
 
 Finding documentation for Ruby gems and libraries is often time-consuming.
-ORI addresses this issue by bringing `ri` documentation right to your IRB console in a **simple**, **consistent** and truly **object-oriented** way.
+ORI addresses this issue by bringing RI documentation right to your IRB console in a **simple**, **consistent** and truly **object-oriented** way.
 
 If you're too lazy to read this README, [watch this screencast](http://www.screencast-o-matic.com/watch/cXVVYuXpH) instead.
 
@@ -36,23 +36,25 @@ If you're too lazy to read this README, [watch this screencast](http://www.scree
 
     ~~~
     $ ruby -v
-    ruby 1.9.2p290 (2011-07-09 revision 32553) [i686-linux]
+    ruby 1.9.3p327 (2012-11-10 revision 37606) [i686-linux]
     ~~~
 
-2. Check your `ri` version. Should be at least version **2.5**:
+2. Check your RI version. Should be at least version **2.5**:
 
     ~~~
     $ ri --version
-    ri 2.5.8
+    ri 3.9.4
     ~~~
 
-3. Check if core `ri` documentation is available:
+3. Check if core RI documentation is available:
 
     ~~~
     $ ri Array.each
     ~~~
 
-    You should see the doc article. If you see `Nothing known about Array`, **you are missing the core `ri` documentation**. To set it up, please follow the steps from [README_RI_CORE](/dadooda/ori/blob/master/README_RI_CORE.md).
+    You should see the doc article.
+    
+    **If you see `Nothing known about Array`, you are missing the core RI documentation. To set it up, please follow the steps from [README_RI_CORE](/dadooda/ori/blob/master/README_RI_CORE.md).**
 
 
 ### <a name="regular_setup" /> Regular setup ###
@@ -85,9 +87,10 @@ irb> Array.ri :each
 Under Ruby Version Manager ([RVM](http://rvm.beginrescueend.com/)), install the gem into `global` gemset of Ruby versions you're using:
 
 ~~~
-$ rvm 1.9.2
+$ rvm 1.9.3
 $ rvm gemset use global
 $ gem install ori
+$ gem install rdoc
 ~~~
 
 Add to your `~/.irbrc`:
@@ -108,7 +111,9 @@ irb> Array.ri :each
 
 ### <a name="rails_3_bundler_setup" /> Rails 3.x+Bundler setup ###
 
-Start by stepping into your Rails project directory:
+First, complete steps described in [RVM setup](#rvm_setup).
+
+Then, step into your Rails project directory:
 
 ~~~
 $ cd myrailsproject
@@ -141,9 +146,9 @@ $ rails console
 
 #### Further important Bundler information ####
 
-At the moment of this writing (2012-01-09) `bundle install` installs gems without `ri` documentation and it's not possible to change this behavior.
+At the moment of this writing (2012-12-14) `bundle install` installs gems without RI documentation and it's not possible to change this behavior via options of any kind.
 
-It means that you need to **manually re-install** the gems for which you need `ri` documentation. Example:
+It means that you need to **manually re-install** the gems for which you need RI documentation. Example:
 
 ~~~
 $ rails console
@@ -151,12 +156,12 @@ $ rails console
 No articles found
 ~~~
 
-The above means that Rails components have been installed via `bundle install` and have no `ri` documentation. Let's fix it:
+The above means that Rails components have been installed via `bundle install` and have no RI documentation. Let's fix it:
 
 ~~~
 $ grep rails Gemfile
-gem "rails", "3.0.7"
-$ gem install rails -v 3.0.7
+gem "rails", "3.2.8"
+$ gem install rails -v 3.2.8
 ~~~
 
 Rails gems are now re-installed, let's try again:
@@ -166,7 +171,7 @@ $ rails console
 >> ActiveRecord::Base.ri :validate
 ActiveModel::Validations::ClassMethods#validate
 
-(from gem activemodel-3.0.7)
+(from gem activemodel-3.2.8)
 ------------------------------------------------------------------------------
   validate(*args, &block)
 
@@ -184,32 +189,57 @@ Seems to work now.
 <a name="local_project_doc_setup" /> Local project doc setup
 ------------------------------------------------------------
 
-With a small hack it is possible to generate your local project's (Rails or not) `ri` documentation and make it available to ORI.
+With a small hack it is possible to generate **your own local project's** RI documentation and make it instantly available in your IRB/Rails console.
 
 To do it, add to your `~/.irbrc`:
 
 ~~~
-# Local doc hack. To generate project's doc, do a:
-#
-#   $ rdoc --ri -o doc/ri -O
-if File.directory?(path = "doc/ri")
-  ORI.conf.frontend.gsub!("%s", "-d #{path} %s")
-end
+# Local doc hack.
+if true
+  path = "doc/ri"
+
+  eval %{
+    module Kernel
+      private
+
+      def localdoc
+        system("rdoc --ri --all -O -o #{path}")
+      end
+    end
+
+    # Add local lookup path if it exists. Otherwise `ri` will refuse to find anything at all.
+    if File.directory? "#{path}"
+      ORI.conf.frontend.gsub!("%s", "-d #{path} %s")
+    end
+  } # eval
+
+  puts "Local doc hack available. Use `localdoc` to update project's RI doc"
+end # if true
 ~~~
 
-Now step into your project's directory and generate the doc, like the comment says:
+Now in your project's IRB or Rails console you can do a:
 
 ~~~
-$ rdoc --ri -o doc/ri -O
+>> localdoc
 ~~~
 
-Now fire up the console and enjoy instant documentation on your classes and methods:
+After the doc has been rebuilt, do a:
 
 ~~~
-$ rails console
 >> MyKlass.ri
 >> MyKlass.ri :some_method
 ~~~
+
+, and enjoy an up-to-date doc.
+
+My own experience shows that the habit of using `localdoc` has at least two good consequences:
+
+* Now there **is** an incentive to document methods **now**, not "when time permits".
+* We can keep an eye on RDoc issues which occur during the doc generation.
+  RDoc's parser is far from being perfect, but in many cases we can fix or work around certain quirks.
+  It's much easier to do it in small portions as we go, rather than all at once.
+
+If your experience is different from mine, feel free to share it!
 
 
 <a name="usage" /> Usage
@@ -222,7 +252,7 @@ $ irb
 irb> Array.ri
 ~~~
 
-### Request `ri` on a class ###
+### Request RI on a class ###
 
 It's fairly straightforward -- grab a class or class instance and call `ri` on it:
 
@@ -235,7 +265,7 @@ ar = Array.new
 ar.ri
 ~~~
 
-### Request `ri` on a method ###
+### Request RI on a method ###
 
 ~~~
 String.ri :upcase
