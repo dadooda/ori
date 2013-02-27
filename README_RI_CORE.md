@@ -1,5 +1,5 @@
 
-Setting up core `ri` documentation for your version of Ruby
+Setting up core RI documentation for your version of Ruby
 ===========================================================
 
 
@@ -8,8 +8,8 @@ All versions, general procedure
 
 * Compile and install Ruby without ri/rdoc documentation.
 * Install the latest `rdoc` gem before you install any other gems.
-* Generate `ri` documentation using the latest `rdoc` gem.
-* Test if `ri` documentation is installed correctly.
+* Generate RI documentation using the latest `rdoc` gem.
+* Test if RI documentation is installed correctly.
 
 
 RVM
@@ -31,7 +31,7 @@ $ rvm gemset use global
 $ gem install rdoc
 ~~~
 
-Generate `ri` documentation (takes a while):
+Generate RI documentation (takes a while):
 
 ~~~
 $ cd ~/.rvm/src
@@ -61,7 +61,7 @@ $ rvm gemset use global
 $ gem install rdoc
 ~~~
 
-Generate `ri` documentation (takes a while):
+Generate RI documentation (takes a while):
 
 ~~~
 $ cd ~/.rvm/src
@@ -96,7 +96,7 @@ $ ri Array.each
 
 ### 1.8.x ###
 
-If installed with `make install` by default, `ri` documentation will be generated in an outdated format, which is no longer supported. Please follow these steps to generate the documentation correctly.
+If installed with `make install` by default, RI documentation will be generated in an outdated format, which is no longer supported. Please follow these steps to generate the documentation correctly.
 
 Unpack source:
 
