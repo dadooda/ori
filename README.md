@@ -5,7 +5,7 @@ Object-oriented RI for IRB console
 
 * [Introduction](#introduction)
 * [Setup](#setup)
-  * [Regular setup](#regular_setup)
+  * [Pre-setup (test your environment)](#pre_setup)
   * [Regular setup](#regular_setup)
   * [RVM setup](#rvm_setup)
   * [Rails 3.x+Bundler setup](#rails_3_bundler_setup)
