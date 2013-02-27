@@ -54,7 +54,7 @@ If you're too lazy to read this README, [watch this screencast](http://www.scree
 
     You should see the doc article.
     
-    **If you see `Nothing known about Array`, you are missing the core RI documentation. To set it up, please follow the steps from [README_RI_CORE](/dadooda/ori/blob/master/README_RI_CORE.md).**
+    **If you see `Nothing known about Array`, you are missing the core RI documentation. To set it up, please follow the steps from [README_RI_CORE](blob/master/README_RI_CORE.md).**
 
 
 ### <a name="regular_setup" /> Regular setup ###
