@@ -6,6 +6,7 @@ Object-oriented RI for IRB console
 * [Introduction](#introduction)
 * [Setup](#setup)
   * [Regular setup](#regular_setup)
+  * [Regular setup](#regular_setup)
   * [RVM setup](#rvm_setup)
   * [Rails 3.x+Bundler setup](#rails_3_bundler_setup)
 * [Local project doc setup](#local_project_doc_setup)
@@ -30,7 +31,7 @@ If you're too lazy to read this README, [watch this screencast](http://www.scree
 
 [Click here](#usage) to skip the boring setup part and see live examples right away.
 
-### Pre-setup (test your environment)
+### <a name="pre_setup" /> Pre-setup (test your environment) ###
 
 1. Check your Ruby version. Should be at least **1.8.7**.
 
@@ -54,7 +55,7 @@ If you're too lazy to read this README, [watch this screencast](http://www.scree
 
     You should see the doc article.
     
-    **If you see `Nothing known about Array`, you are missing the core RI documentation. To set it up, please follow the steps from [README_RI_CORE](blob/master/README_RI_CORE.md).**
+    **If you see `Nothing known about Array`, you are missing the core RI documentation. To set it up, please follow the steps from [README_RI_CORE](/dadooda/ori/blob/master/README_RI_CORE.md).**
 
 
 ### <a name="regular_setup" /> Regular setup ###
