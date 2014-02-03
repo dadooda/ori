@@ -15,6 +15,35 @@ All versions, general procedure
 RVM
 ---
 
+### 2.1.0 ###
+
+Install and select the new Ruby:
+
+~~~
+$ rvm install 2.1.0
+$ rvm 2.1.0
+~~~
+
+Generate RI documentation (takes a while):
+
+~~~
+$ cd ~/.rvm/src
+$ rvm docs generate-ri
+~~~
+
+Test:
+
+~~~
+$ ri Array.each
+~~~
+
+
+### 2.0.x ###
+
+Never had a chance to try this one. :)
+Contributor information is welcome.
+
+
 ### 1.9.x ###
 
 Install and select the new Ruby:
@@ -29,13 +58,6 @@ Install the most recent `rdoc` gem:
 ~~~
 $ rvm gemset use global
 $ gem install rdoc
-~~~
-
-Generate RI documentation (takes a while):
-
-~~~
-$ cd ~/.rvm/src
-$ rvm docs generate-ri
 ~~~
 
 Test:
@@ -77,6 +99,11 @@ $ ri Array.each
 
 Non-RVM, from source
 --------------------
+
+### 2.0.x, 2.1.x ###
+
+Contributor information is highly welcome.
+
 
 ### 1.9.x ###
 
