@@ -186,14 +186,18 @@ module ORI
       ])
     end
 
-    # Stuff a ready-made "<subject>.ri " command into Readline history if last request had an argument.
+    # Stuff a ready-made "<subject>.ri " command into history if last request had an argument.
     def self.do_history
+      linelib = Reline rescue Readline rescue nil
+
+      return unless linelib
+
       # `cmd` is actually THIS command being executed.
-      cmd = Readline::HISTORY.to_a.last
+      cmd = linelib::HISTORY.to_a.last
       if prefix = get_ri_arg_prefix(cmd)
-        Readline::HISTORY.pop
-        Readline::HISTORY.push "#{prefix} "
-        Readline::HISTORY.push cmd
+        linelib::HISTORY.pop
+        linelib::HISTORY.push "#{prefix} "
+        linelib::HISTORY.push cmd
       end
     end
 
